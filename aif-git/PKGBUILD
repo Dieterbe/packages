@@ -2,7 +2,7 @@
 
 pkgname=aif-git
 pkgver=20081116
-pkgrel=1
+pkgrel=2
 pkgdesc="The ArchLinux Installation Framework: latest from git"
 arch=('i686' 'x86_64')
 url="http://github.com/Dieterbe/aif/"
@@ -28,14 +28,14 @@ build() {
 
 
   mkdir -p $pkgdir/arch/
-  mkdir -p $pkgdir/home/arch/fifa/docs
+  mkdir -p $pkgdir/home/arch/aif/docs
 
-  cp -ax src/fifa.sh $pkgdir/arch/aif
-  cp -ax src/core    $pkgdir/home/arch/fifa/
-  cp -ax src/user    $pkgdir/home/arch/fifa/
-  cp -ax src/runtime $pkgdir/home/arch/fifa/
-  cp -ax HOWTO       $pkgdir/home/arch/fifa/docs/
-  cp -ax README      $pkgdir/home/arch/fifa/docs/
+  cp -ax src/aif.sh  $pkgdir/arch/aif
+  cp -ax src/core    $pkgdir/home/arch/aif/
+  cp -ax src/user    $pkgdir/home/arch/aif/
+  cp -ax src/runtime $pkgdir/home/arch/aif/
+  cp -ax HOWTO       $pkgdir/home/arch/aif/docs/
+  cp -ax README      $pkgdir/home/arch/aif/docs/
 
   # couldn't figure out how to use the install thing properly, how to mv
   # complete directories with it etc.
