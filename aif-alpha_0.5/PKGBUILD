@@ -1,0 +1,52 @@
+# Contributor: Dieter Plaetinck <dieter@plaetinck.be>
+
+pkgname=aif
+pkgver=alpha_0.5
+pkgrel=1
+pkgdesc="The ArchLinux Installation Framework: code and docs"
+arch=('i686' 'x86_64')
+url="http://github.com/Dieterbe/aif/"
+license=('GPL3')
+depends=('bash' 'pacman')
+makedepends=('git')
+source=()
+md5sums=()
+_gitroot="git://github.com/Dieterbe/aif.git"
+_gittag=alpha-0.5
+
+
+build() {
+  msg "Connecting to GIT server..."
+  if [[ -d $srcdir/$pkgname-$pkgver ]]; then
+    cd $srcdir/$pkgname-$pkgver && git pull origin || return 1
+  else
+    git clone $_gitroot $srcdir/$pkgname-$pkgver || return 1
+    cd $srcdir/$pkgname-$pkgver
+  fi
+  git checkout $_gittag || return 1
+
+  msg "GIT checkout done"
+
+
+  mkdir -p $pkgdir/arch/
+  mkdir -p $pkgdir/home/arch/fifa/docs
+
+  cp -ax src/fifa.sh $pkgdir/arch/aif
+  cp -ax src/core    $pkgdir/home/arch/fifa/
+  cp -ax src/user    $pkgdir/home/arch/fifa/
+  cp -ax src/runtime $pkgdir/home/arch/fifa/
+  cp -ax HOWTO       $pkgdir/home/arch/fifa/docs/
+  cp -ax README      $pkgdir/home/arch/fifa/docs/
+
+  # couldn't figure out how to use the install thing properly, how to mv
+  # complete directories with it etc.
+  #install -D -m755 src/fifa.sh      $pkgdir/arch/fifa.sh
+  #install -D -m644 src/core         $pkgdir/arch/fifa/
+  #install -D -m644 src/user         $pkgdir/arch/fifa/
+  #install -D -m644 src/runtime      $pkgdir/arch/fifa/
+  #install -D -m644 src/HOWTO        $pkgdir/arch/fifa/docs/
+  #install -D -m644 src/README       $pkgdir/arch/fifa/docs/
+}
+
+# vim:set ts=2 sw=2 et:
+
