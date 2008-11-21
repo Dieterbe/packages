@@ -1,0 +1,53 @@
+# Contributor: Dieter Plaetinck <dieter@plaetinck.be>
+pkgname=aif-blockdevicerefactor-git
+pkgver=20081121
+pkgrel=1
+pkgdesc="The ArchLinux Installation Framework: blockdevicerefactor branch from git"
+arch=('i686' 'x86_64')
+url="http://github.com/Dieterbe/aif/"
+license=('GPL3')
+depends=('bash' 'pacman')
+makedepends=('git')
+provides=('aif')
+conflicts=('aif')
+source=()
+md5sums=()
+
+_gitroot="git://github.com/Dieterbe/aif.git"
+_gitname=blockdevicerefactor
+
+build() {
+  msg "Connecting to GIT server..."
+  if [[ -d $srcdir/$pkgname-$pkgver ]]; then
+    cd $srcdir/$pkgname-$pkgver && git pull origin || return 1
+  else
+    git clone $_gitroot $srcdir/$pkgname-$pkgver || return 1
+    cd $srcdir/$pkgname-$pkgver
+	git checkout origin/$_gitname || return 1
+  fi
+
+  msg "GIT checkout done or server timeout"
+
+
+  mkdir -p $pkgdir/arch/
+  mkdir -p $pkgdir/home/arch/aif/docs
+
+  cp -ax src/aif.sh  $pkgdir/arch/aif
+  cp -ax src/core    $pkgdir/home/arch/aif/
+  cp -ax src/user    $pkgdir/home/arch/aif/
+  cp -ax src/runtime $pkgdir/home/arch/aif/
+  cp -ax HOWTO       $pkgdir/home/arch/aif/docs/
+  cp -ax README      $pkgdir/home/arch/aif/docs/
+
+  # couldn't figure out how to use the install thing properly, how to mv
+  # complete directories with it etc.
+  #install -D -m755 src/fifa.sh      $pkgdir/arch/fifa.sh
+  #install -D -m644 src/core         $pkgdir/arch/fifa/
+  #install -D -m644 src/user         $pkgdir/arch/fifa/
+  #install -D -m644 src/runtime      $pkgdir/arch/fifa/
+  #install -D -m644 src/HOWTO        $pkgdir/arch/fifa/docs/
+  #install -D -m644 src/README       $pkgdir/arch/fifa/docs/
+}
+
+# vim:set ts=2 sw=2 et:
+
