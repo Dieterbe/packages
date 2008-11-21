@@ -1,5 +1,4 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
-
 pkgname=aif-git
 pkgver=20081116
 pkgrel=2
@@ -13,6 +12,7 @@ provides=('aif')
 conflicts=('aif')
 source=()
 md5sums=()
+
 _gitroot="git://github.com/Dieterbe/aif.git"
 
 build() {
@@ -24,7 +24,7 @@ build() {
     cd $srcdir/$pkgname-$pkgver
   fi
 
-  msg "GIT checkout done"
+  msg "GIT checkout done or server timeout"
 
 
   mkdir -p $pkgdir/arch/

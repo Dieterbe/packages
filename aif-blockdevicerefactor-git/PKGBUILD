@@ -19,7 +19,7 @@ _gitname=blockdevicerefactor
 build() {
   msg "Connecting to GIT server..."
   if [[ -d $srcdir/$pkgname-$pkgver ]]; then
-    cd $srcdir/$pkgname-$pkgver && git pull origin || return 1
+    cd $srcdir/$pkgname-$pkgver && git pull origin $_gitname || return 1
   else
     git clone $_gitroot $srcdir/$pkgname-$pkgver || return 1
     cd $srcdir/$pkgname-$pkgver
