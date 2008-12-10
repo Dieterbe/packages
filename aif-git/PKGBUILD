@@ -1,8 +1,8 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
 pkgname=aif-git
-pkgver=20081116
-pkgrel=2
-pkgdesc="The ArchLinux Installation Framework: latest from git"
+pkgver=20081210
+pkgrel=3
+pkgdesc="The ArchLinux Installation Framework: latest from the git master branch"
 arch=('i686' 'x86_64')
 url="http://github.com/Dieterbe/aif/"
 license=('GPL3')
