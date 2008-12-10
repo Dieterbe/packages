@@ -1,6 +1,6 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
 pkgname=aif-experimental-git
-pkgver=20081209
+pkgver=20081210
 pkgrel=2
 pkgdesc="The ArchLinux Installation Framework: latest from the git experimental branch"
 arch=('i686' 'x86_64')
