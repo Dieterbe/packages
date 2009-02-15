@@ -1,7 +1,7 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
 pkgname=aif-experimental-git
-pkgver=20081210
-pkgrel=2
+pkgver=20090215
+pkgrel=1
 pkgdesc="The ArchLinux Installation Framework: latest from the git experimental branch"
 arch=('i686' 'x86_64')
 url="http://github.com/Dieterbe/aif/"
@@ -28,26 +28,17 @@ build() {
 
   msg "GIT checkout done or server timeout"
 
-
-  mkdir -p $pkgdir/arch/
-  mkdir -p $pkgdir/home/arch/aif/docs
-
-  cp -ax src/aif.sh  $pkgdir/arch/aif
-  cp -ax src/core    $pkgdir/home/arch/aif/
-  cp -ax src/user    $pkgdir/home/arch/aif/
-  cp -ax src/runtime $pkgdir/home/arch/aif/
-  cp -ax HOWTO       $pkgdir/home/arch/aif/docs/
-  cp -ax README      $pkgdir/home/arch/aif/docs/
-
-  # couldn't figure out how to use the install thing properly, how to mv
-  # complete directories with it etc.
-  #install -D -m755 src/fifa.sh      $pkgdir/arch/fifa.sh
-  #install -D -m644 src/core         $pkgdir/arch/fifa/
-  #install -D -m644 src/user         $pkgdir/arch/fifa/
-  #install -D -m644 src/runtime      $pkgdir/arch/fifa/
-  #install -D -m644 src/HOWTO        $pkgdir/arch/fifa/docs/
-  #install -D -m644 src/README       $pkgdir/arch/fifa/docs/
+	install -d $pkgdir/sbin
+	install -d $pkgdir/usr/share/aif/docs
+	install -d $pkgdir/usr/lib/aif/core
+	install -d $pkgdir/usr/lib/aif/user
+	install -D -m755 src/aif.sh $pkgdir/sbin/aif
+	install -D -m644 HOWTO $pkgdir/usr/share/aif/docs
+	install -D -m644 README $pkgdir/usr/share/aif/docs
+	cp -rp src/core $pkgdir/usr/lib/aif/
+	chmod -R 755 $pkgdir/usr/lib/aif/core
+	cp -rp src/user $pkgdir/usr/lib/aif/
+	chmod -R 755 $pkgdir/usr/lib/aif/user
 }
 
 # vim:set ts=2 sw=2 et:
-
