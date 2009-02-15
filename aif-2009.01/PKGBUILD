@@ -1,0 +1,51 @@
+# Contributor: Dieter Plaetinck <dieter@plaetinck.be>
+pkgname=aif
+pkgver=2009.01
+pkgrel=1
+pkgdesc="The ArchLinux Installation Framework: code and docs"
+arch=('i686' 'x86_64')
+url="http://github.com/Dieterbe/aif/"
+license=('GPL3')
+depends=('bash' 'pacman')
+makedepends=('git')
+source=()
+md5sums=()
+_gitroot="git://github.com/Dieterbe/aif.git"
+_gittag=2009.01
+
+
+build() {
+  msg "Connecting to GIT server..."
+  if [[ -d $srcdir/$pkgname-$pkgver ]]; then
+    cd $srcdir/$pkgname-$pkgver && git pull origin || return 1
+  else
+    git clone $_gitroot $srcdir/$pkgname-$pkgver || return 1
+    cd $srcdir/$pkgname-$pkgver
+  fi
+  git checkout $_gittag || return 1
+
+  msg "GIT checkout done or server timeout"
+
+
+  mkdir -p $pkgdir/arch/
+  mkdir -p $pkgdir/home/arch/aif/docs
+
+  cp -ax src/aif.sh  $pkgdir/arch/aif
+  cp -ax src/core    $pkgdir/home/arch/aif/
+  cp -ax src/user    $pkgdir/home/arch/aif/
+  cp -ax src/runtime $pkgdir/home/arch/aif/
+  cp -ax HOWTO       $pkgdir/home/arch/aif/docs/
+  cp -ax README      $pkgdir/home/arch/aif/docs/
+
+  # couldn't figure out how to use the install thing properly, how to mv
+  # complete directories with it etc.
+  #install -D -m755 src/aif.sh      $pkgdir/arch/aif.sh
+  #install -D -m644 src/core         $pkgdir/arch/aif/
+  #install -D -m644 src/user         $pkgdir/arch/aif/
+  #install -D -m644 src/runtime      $pkgdir/arch/aif/
+  #install -D -m644 src/HOWTO        $pkgdir/arch/aif/docs/
+  #install -D -m644 src/README       $pkgdir/arch/aif/docs/
+}
+
+# vim:set ts=2 sw=2 et:
+
