@@ -1,6 +1,6 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
 pkgname=aif-experimental-git
-pkgver=20090310
+pkgver=20090613
 pkgrel=1
 pkgdesc="The ArchLinux Installation Framework: latest from the git experimental branch"
 arch=('i686' 'x86_64')
@@ -28,20 +28,7 @@ build() {
 
   msg "GIT checkout done or server timeout"
 
-	install -d $pkgdir/sbin
-	install -d $pkgdir/usr/share/aif/docs
-	install -d $pkgdir/usr/share/aif/examples
-	install -d $pkgdir/usr/lib/aif/core
-	install -d $pkgdir/usr/lib/aif/user
-	install -D -m755 src/aif.sh $pkgdir/sbin/aif
-	install -D -m644 HOWTO $pkgdir/usr/share/aif/docs
-	install -D -m644 README $pkgdir/usr/share/aif/docs
-	cp -rp src/core $pkgdir/usr/lib/aif
-	chmod -R 755 $pkgdir/usr/lib/aif/core
-	cp -rp src/user $pkgdir/usr/lib/aif
-	chmod -R 755 $pkgdir/usr/lib/aif/user
-	cp -rp examples $pkgdir/usr/share/aif
-	chmod -R 755 $pkgdir/usr/share/aif/examples
+  make DESTDIR="$pkgdir/" install
 }
 
 # vim:set ts=2 sw=2 et:
