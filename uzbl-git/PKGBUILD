@@ -1,0 +1,36 @@
+# Contributor: Dieter Plaetinck <dieter@plaetinck.be>
+pkgname=uzbl-git
+pkgver=20090607
+pkgrel=1
+pkgdesc="The Uzbl browser: latest from the git master branch"
+arch=('i686' 'x86_64')
+url="http://github.com/Dieterbe/uzbl/"
+license=('GPL3')
+depends=('libwebkit>=1.1.4' 'gtk2' 'libsoup>=2.24')
+optdepends=('dmenu: to run some of the example scripts' 'bash: to run some of the example scripts' 'zenity: to run some of the example scripts' 'python: for the example cookie script' 'perl: for the example forfiller')
+makedepends=('git' 'pkgconfig')
+provides=('uzbl')
+conflicts=('uzbl')
+source=()
+md5sums=()
+
+_gitroot="git://github.com/Dieterbe/uzbl.git"
+
+build() {
+  msg "Connecting to GIT server..."
+  if [[ -d $srcdir/$pkgname-$pkgver ]]; then
+    cd $srcdir/$pkgname-$pkgver && git pull origin || return 1
+  else
+    git clone $_gitroot $srcdir/$pkgname-$pkgver || return 1
+    cd $srcdir/$pkgname-$pkgver
+  fi
+
+  msg "GIT checkout done or server timeout"
+
+
+	make || return 1
+	make DESTDIR="$pkgdir/" install
+}
+
+# vim:set ts=2 sw=2 et:
+
