@@ -2,7 +2,7 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
 
 pkgname=claws-mail-nopalm
-pkgver=3.7.1
+pkgver=3.7.2
 pkgrel=1
 pkgdesc="A GTK+ based e-mail client.  Stripped out palmOs support"
 arch=('i686' 'x86_64')
@@ -21,7 +21,7 @@ conflicts=('claws-mail')
 options=(!libtool)
 install=claws-mail-nopalm.install
 source=(http://downloads.sourceforge.net/sourceforge/sylpheed-claws/claws-mail-${pkgver}.tar.bz2)
-md5sums=('8351ba15b04c1388d772ba52e41a8643')
+md5sums=('df27c2488df499d8c05646d3e101d095')
 
 build() {
   cd ${srcdir}/claws-mail-${pkgver}
