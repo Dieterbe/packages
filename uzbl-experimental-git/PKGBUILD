@@ -1,6 +1,6 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
 pkgname=uzbl-experimental-git
-pkgver=20090607
+pkgver=20090826
 pkgrel=1
 pkgdesc="The Uzbl browser: latest from the git experimental branch"
 arch=('i686' 'x86_64')
