@@ -7,7 +7,7 @@ arch=('i686' 'x86_64')
 url="http://github.com/Dieterbe/uzbl/"
 license=('GPL3')
 depends=('libwebkit>=1.1.4' 'gtk2' 'libsoup>=2.24')
-optdepends=('socat: to interface with the socket' 'dmenu: to run some of the example scripts' 'bash: to run some of the example scripts' 'zenity: to run some of the example scripts' 'python: for the example cookie script' 'perl: for the example forfiller')
+optdepends=('socat: to interface with the socket' 'dmenu: to run some of the example scripts' 'bash: to run some of the example scripts' 'zenity: to run some of the example scripts' 'python: to run some of the example scripts' 'perl: for the example formfiller')
 makedepends=('git' 'pkgconfig')
 provides=('uzbl')
 conflicts=('uzbl')
