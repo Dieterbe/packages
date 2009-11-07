@@ -1,8 +1,8 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
 pkgname=uzbl-git
-pkgver=20090826
-pkgrel=2
-pkgdesc="The Uzbl browser: latest from the git master branch"
+pkgver=20091107
+pkgrel=1
+pkgdesc="All uzbl web interface tools: latest from the git master branch"
 arch=('i686' 'x86_64')
 url="http://github.com/Dieterbe/uzbl/"
 license=('GPL3')
@@ -29,7 +29,7 @@ build() {
 
 
 	make || return 1
-	make PREFIX="$pkgdir/usr" install
+	make DESTDIR=$pkgdir PREFIX=/usr install
 }
 
 # vim:set ts=2 sw=2 et:
