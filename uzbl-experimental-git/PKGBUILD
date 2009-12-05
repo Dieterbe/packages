@@ -1,13 +1,15 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
 pkgname=uzbl-experimental-git
-pkgver=20091108
+pkgver=20091205
 pkgrel=1
 pkgdesc="All uzbl web interface tools: latest from the git experimental branch"
 arch=('i686' 'x86_64')
 url="http://github.com/Dieterbe/uzbl/"
 license=('GPL3')
 depends=('libwebkit>=1.1.15' 'gtk2' 'libsoup>=2.24')
-optdepends=('socat: to interface with the socket' 'dmenu: to run some of the example scripts' 'bash: to run some of the example scripts' 'zenity: to run some of the example scripts' 'python: to run some of the example scripts' 'perl: for the example formfiller')
+optdepends=('socat: to interface with the socket' 'dmenu: to run some of the example scripts' 'bash: to run some of the example scripts' 'zenity: to run some of the example scripts'\
+            'python: to run some of the example scripts' 'perl: for the example formfiller' 'pygtk: for uzbl-tabbed' 'pango: for uzbl-tabbed' 'python-simplejson: for session saving in uzbl-tabbed'\
+            'xclip: for clipboard related keybindings')
 makedepends=('git' 'pkgconfig')
 provides=('uzbl')
 conflicts=('uzbl')
