@@ -1,7 +1,7 @@
 # Contributor: Dieter Plaetinck <dieter@plaetinck.be>
 pkgname=ddm-git
 pkgver=20100904
-pkgrel=1
+pkgrel=2
 pkgdesc="DDM (Distributed Data Manager), manages your data"
 arch=('any')
 url="http://github.com/Dieterbe/ddm"
@@ -27,7 +27,7 @@ build() {
 
   msg "GIT checkout done or server timeout"
 
-  make DESTDIR="$pkgdir/" install
+  make DESTDIR="$pkgdir" PREFIX="/usr" install
 }
 
 # vim:set ts=2 sw=2 et:
