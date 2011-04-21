@@ -1,0 +1,46 @@
+pkgname=dvcs-autosync-git
+pkgver=20110421
+pkgrel=1
+pkgdesc="A personal Dropbox replacement based on Git"
+arch=('any')
+url="http://mayrhofer.eu.org/dvcs-autosync"
+license=('GPL')
+depends=('pyinotify' 'xmpppy' 'python2')
+optdepends=('python-notify')
+makedepends=()
+provides=('jabberbot')
+conflicts=('jabberbot')
+sources=()
+md5sums=()
+
+_gitroot="git://gitorious.org/dvcs-autosync/dvcs-autosync.git"
+#_gitname="master"
+_gitname="devel"
+
+#_gitroot="git://gitorious.org/~dieterbe/dvcs-autosync/dieterbes-dvcs-autosync.git"
+#_gitname="master"
+#_gitname="fixes"
+
+build() {
+    cd "$srcdir"
+    msg "Connecting to GIT server...."
+
+    if [ -d $_gitname ] ; then
+        cd $_gitname && git pull origin
+    msg "The local files are updated."
+    else
+        git clone $_gitroot $_gitname
+	cd $_gitname && git checkout $_gitname
+    fi
+
+    msg "GIT checkout done or server timeout"
+
+    # python2 fix
+    # $(find . -name '*.py' -print) is not enough..
+    for file in $(find . -type f | xargs grep -l '^#!.*python'); do
+        sed -i 's_^#!.*/usr/bin/python\s*$_#!/usr/bin/python2_' $file
+        sed -i 's_^#!.*/usr/bin/env.*python\s*$_#!/usr/bin/env python2_' $file
+    done
+    install -Dm755 dvcs-autosync $pkgdir/usr/bin/dvcs-autosync
+    install -Dm644 jabberbot.py $pkgdir/usr/lib/python2.7/site-packages/jabberbot.py
+}
